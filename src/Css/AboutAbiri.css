@@ -1,0 +1,43 @@
+.about-abiri {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    max-width: 800px;
+    margin: auto;
+    color: black;
+  }
+  
+  .about-abiri h1 {
+    font-size: 2em;
+    color: #007BFF;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .about-abiri p {
+    font-size: 1.1em;
+    line-height: 1.6;
+    color: black;
+    margin-bottom: 20px;
+  }
+  
+  .about-abiri h2 {
+    font-size: 1.5em;
+    color: #333;
+    margin-top: 40px;
+    margin-bottom: 10px;
+  }
+  
+  .phase {
+    margin-bottom: 20px;
+  }
+  
+  .phase h3 {
+    font-size: 1.3em;
+    color: #007BFF;
+    margin-bottom: 5px;
+  }
+  
+  .phase p {
+    margin-left: 20px;
+  }
+  

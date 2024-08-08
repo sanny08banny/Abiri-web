@@ -1,0 +1,461 @@
+body {
+  font-family: 'Poppins', Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.containerhead {
+  max-width: 1200px;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Ensure vertical centering */
+  width: 100%;
+  background-color: #f5f5f5;
+}
+
+.containerhead h1 {
+  font-size: 1.5rem;
+  margin: 20px 0; /* Increased top and bottom margin */
+}
+
+.containerhead nav {
+  margin: 20px 0; /* Increased top and bottom margin */
+
+}
+
+.containerhead nav a {
+  color: #000;
+  text-decoration: none;
+  margin: 0 1.5rem; /* Increased end margin */
+  line-height: 1; /* Ensure line-height doesn't affect vertical centering */
+}
+
+.containerhead nav a:hover {
+  text-decoration: underline;
+}
+
+.hero {
+  position: relative;
+  height: 400px;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-start;
+  padding: 40px 60px;
+  box-sizing: border-box;
+}
+
+.hero h2 {
+  font-size: 45px;
+  font-weight: 400;
+  margin: 0 0 20px 0;
+}
+
+.hero p {
+  max-width: 522px;
+  color: #FFFFFF;
+  ;
+  margin: 0;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('/src/assets/hero-image.jpg');
+  background-size: cover;
+  background-position:center center; /* Adjust positioning to start from the top */
+  opacity: 0.7; /* 50% opacity for the image */
+  z-index: -1;
+}
+
+.hero div {
+  position: relative;
+  color: white;
+  text-align: left;
+}
+
+.hero button {
+  padding: 10px 20px;
+  background: black;
+  margin-top: 10px;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.earn-money {
+  max-width: 1178px; /* Set maximum width */
+  margin: 0 auto; /* Center the section horizontally */
+  padding: 10px 80px; /* Adjust padding if necessary */
+  text-align: start;
+}
+.about-tabs {
+  display: flex;
+  justify-content: start;
+  margin-bottom: 20px;
+  gap: 10px;
+}
+
+.about-tabs button {
+  background-color: white; /* Default background color for inactive state */
+  color: black; /* Default text color for inactive state */
+  border: 1px solid black; /* Border color */
+  padding: 8px 16px; /* Reduced size */
+  border-radius: 15px; /* Increased corner radius */
+  cursor: pointer;
+  font-size: 14px; /* Font size */
+  transition: background-color 0.3s, color 0.3s; /* Smooth transition for color change */
+}
+
+.about-tabs button.active {
+  background-color: black; /* Background color for active state */
+  color: white; /* Text color for active state */
+}
+
+.content-container {
+  display: flex; /* Display image and content next to each other */
+  align-items: center; /* Center align items vertically */
+  justify-content: start; /* Align items horizontally at the start */
+  gap: 20px; /* Add some gap between image and content */
+}
+
+.image-container {
+  flex: 0 0 auto; /* Prevent the image from growing */
+}
+
+.image-container img {
+  width: 522px;
+  height: 250px;
+  border-radius: 8px; /* Rounded corners */
+  object-fit: cover; /* Ensure the image fits within the dimensions */
+}
+
+.tab-content {
+  text-align: left; /* Align text to the left */
+  max-width: 522px; /* Max width to match the image width */
+  overflow: hidden; /* Prevent overflow */
+  text-overflow: ellipsis; /* Add ellipsis for overflowing text */
+  display: flex;
+  flex-direction: column; /* Stack content vertically */
+  justify-content: center; /* Center content vertically */
+}
+
+.tab-content .title {
+  font-size: 1.2em; /* Larger font size */
+  font-weight: normal; /* Not bold */
+  color: #000; /* Different text color */
+  margin-top: 20px; /* Add some space above */
+  margin-bottom: 10px; /* Add some space below */
+}
+
+.tab-content p {
+  color: #555;
+}
+
+.tab-content button {
+  padding: 10px 20px;
+  background: black;
+  margin-top: 10px;
+  color: white;
+  border: none;
+  width: 133px;
+  cursor: pointer;
+}
+
+
+.services {
+  padding: 20px;
+  margin-left: 60px;
+}
+
+.container-services {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: start;
+}
+
+h2 {
+  margin-bottom: 20px;
+  font-size: 2rem;
+  font-family: 'Poppins', sans-serif;
+}
+
+.service-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* Center align the cards */
+}
+
+.service-cards .card {
+  flex: 1 1 calc(33.333% - 20px); /* Ensure three cards per row */
+  margin: 10px;
+  padding: 20px;
+  background: #f3effb; /* Light purple background */
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  position: relative;
+}
+
+.service-cards .card h3 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.service-cards .card p {
+  font-size: 0.9rem;
+  color: #333;
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+  margin-left: 10px;
+}
+
+/* Responsive design: Adjust for smaller screens */
+@media (max-width: 768px) {
+  .service-cards .card {
+    flex: 1 1 calc(50% - 20px); /* Two cards per row on tablets */
+  }
+}
+
+@media (max-width: 480px) {
+  .service-cards .card {
+    flex: 1 1 calc(100% - 20px); /* One card per row on mobile */
+  }
+}
+
+.about {
+  margin-left: 60px;
+  padding: 20px;
+}
+
+.about-container {
+  max-width: 1200px; /* Adjust as needed */
+  margin: 0 auto;
+}
+
+.about h2 {
+  margin-bottom: 20px;
+  font-size: 2em; /* Adjust font size as needed */
+}
+
+.aboutcontent {
+  display: flex;
+  gap: 20px; /* Space between image and text */
+  align-items: center; /* Center items vertically */
+}
+
+.image-container {
+  flex: 0 0 auto; /* Prevent the image from growing */
+}
+
+.image-container img {
+  width: 522px;
+  height: 250px;
+  border-radius: 8px; /* Rounded corners */
+  object-fit: cover; /* Ensure the image fits within the dimensions */
+}
+
+.about text {
+  flex: 1;
+  border: none; /* Remove any border */
+  box-shadow: none; /* Remove any shadow */
+}
+
+.stats {
+  padding: 0; /* Remove any padding */
+}
+
+.stats p.title {
+  font-weight: 400;
+  color: #000; /* Different color for titles, adjust as needed */
+  margin: 0 0 5px 0; /* Space above description */
+  font-size: 22px;
+}
+
+.about p {
+  margin: 0 0 15px 0; /* Space between items */
+  color: #555; /* Color for descriptions, adjust as needed */
+  font-size: 16px;
+}
+/* Container */
+.download-apps {
+  margin-left: 60px;
+  padding: 20px;
+  width: 100%;
+}
+
+/* Navigation Tabs */
+.nav-tabs {
+  margin-top: 30px; /* Space between tabs and content */
+  display: flex;
+  gap: 10px; /* Increased gap between tabs */
+}
+
+.nav-tabs button {
+  background-color: white; /* Default background color */
+  color: black; /* Default text color */
+  border: 1px solid black; /* Border color */
+  padding: 8px 16px; /* Reduced size */
+  border-radius: 15px; /* Increased corner radius */
+  cursor: pointer;
+  font-size: 14px; /* Font size */
+}
+
+.nav-tabs button.active {
+  background-color: black; /* Background color when active */
+  color: white; /* Text color when active */
+}
+
+/* Tab Content */
+.tab-content {
+  margin-top: 20px;
+  width: 100%;
+  min-width: 1178px; /* Minimum width */
+}
+
+/* Content Card */
+.content-card {
+  display: flex;
+  flex-direction: row;
+  background-color: black;
+  height: 500px;
+  width: 100%; /* Ensure card matches the parent width */
+  color: white;
+  border-radius: 25px; /* Increased corner radius */
+  overflow: hidden;
+}
+
+/* Content Text */
+.content-text {
+  padding: 30px; /* Increased padding */
+  flex: 1;
+}
+
+.content-text h3 {
+  margin-top: 0;
+  color: #f0f0f0;
+  font-size: 24px; /* Increased font size */
+}
+
+.content-text p {
+  font-size: 18px; /* Increased font size */
+  color: #e0e0e0;
+}
+
+.content-text button {
+  background-color: #f4f6f8;
+  color: black;
+  border: none;
+  padding: 12px 24px; /* Increased size */
+  border-radius: 10px; /* Increased corner radius */
+  cursor: pointer;
+  font-size: 16px; /* Increased font size */
+}
+
+/* Content Image */
+.content-image {
+  height: 370px;
+  object-fit: cover;
+  flex-shrink: 0;
+  margin: 20px;
+  align-self: center;
+}
+
+
+footer {
+  background-color: #f8f9fa;
+  padding: 20px 0;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.company-info, .office-info, .useful-links, .contact {
+  margin: 0 15px;
+}
+
+.company-name, .office-location,.office-info p, .useful-links p, .contact p, .contact-numbers p {
+  color: black;
+}
+
+.company-name {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.office-location {
+  font-size: 14px;
+}
+
+.useful-links {
+  display: flex;
+  flex-direction: column;
+}
+
+.useful-links p {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.useful-links a {
+  color: black;
+  text-decoration: none;
+  margin: 5px 0;
+}
+
+.contact {
+  display: flex;
+  flex-direction: column;
+}
+
+.social-media {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.social-icon {
+  margin-right: 15px;
+  font-size: 24px; /* Adjust size of the icon */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px; /* Adjust width for round container */
+  height: 40px; /* Adjust height for round container */
+  border-radius: 50%;
+  color: black; /* Icon color */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Small shadow */
+  padding: 6px; /* Padding around the icon */
+  transition: color 0.3s; /* Smooth color transition */
+}
+
+.contact-numbers {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-numbers p {
+  margin: 0;
+  font-size: 14px;
+}
+
+footer .copyright {
+  text-align: center;
+  font-size: 12px;
+  margin-top: 20px;
+  color: #000;
+}
+
