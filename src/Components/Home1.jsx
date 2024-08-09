@@ -246,13 +246,13 @@ function Home1() {
           <div class="contact">
             <p>Contact us</p>
             <div class="social-media">
-              <a href="#" class="social-icon" style="color: black;">
+              <a href="https://www.tiktok.com/@abiriafrica?_t=8oj0kiDnKh4&_r=1" class="social-icon" style="color: black;">
                 <i class="fa-brands fa-facebook"></i>
               </a>
-              <a href="#" class="social-icon" style="color: black;">
+              <a href="https://www.instagram.com/abiriafrica?igsh=emN0c2RsZ290bXhl" class="social-icon" style="color: black;">
                 <i class="fa-brands fa-instagram"></i>
               </a>
-              <a href="#" class="social-icon" style="color: black;">
+              <a href="https://x.com/AbiriAfrica?t=CkNXkXrr3NyklDs85JlUGQ&s=09" class="social-icon" style="color: black;">
                 <i class="fa-brands fa-twitter"></i>
               </a>
               <a href="#" class="social-icon" style="color: black;">
