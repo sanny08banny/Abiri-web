@@ -1,3 +1,31 @@
+/* Default style */
+body {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  width: 100%; /* Default to full width */
+}
 
+/* For devices with a screen width of 1200px or more */
+@media (min-width: 1200px) {
+  body {
+    width: 80%; /* Set width to 80% of the screen width */
+    margin: 0 auto; /* Center the body element horizontally */
+  }
+}
+
+/* For devices with a screen width between 768px and 1199px */
+@media (min-width: 768px) and (max-width: 1199px) {
+  body {
+    width: 90%; /* Set width to 90% of the screen width */
+    margin: 0 auto; /* Center the body element horizontally */
+  }
+}
+
+/* For devices with a screen width less than 768px */
+@media (max-width: 767px) {
+  body {
+    width: 100%; /* Set width to 100% of the screen width */
+  }
+}
 
 

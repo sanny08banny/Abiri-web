@@ -1,0 +1,51 @@
+.taxi-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh; /* Full height for the container */
+}
+
+.inputs {
+  padding: 10px;
+  background-color: #fff;
+  z-index: 1; /* Ensures it's on top of the map */
+}
+
+.input-group {
+  margin-bottom: 10px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+.map {
+  flex-grow: 1; /* Map should take up all available space */
+  height: 100%;
+}
+
+/* Responsive Design for smaller screens */
+@media (max-width: 768px) {
+  .taxi-container {
+    flex-direction: column;
+  }
+  
+  .inputs {
+    padding: 5px;
+  }
+  
+  .input-group input {
+    font-size: 14px;
+  }
+}
+
+/* Adjust map positioning on mobile */
+@media (max-width: 480px) {
+  .map {
+    height: 50vh; /* Map takes half the screen height */
+  }
+}

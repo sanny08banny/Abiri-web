@@ -1,29 +1,49 @@
-/* @refresh reload */
-import { render } from 'solid-js/web';
-import { Route, Router } from "@solidjs/router";
+import { render } from "solid-js/web";
+import { Route, Router, Navigate } from "@solidjs/router";
 
-import './index.css';
-import App from './App';
-import Home1 from './Components/Home1';
-import PrivacyPolicyContent from './Components/PrivacyPolicyComponent';
-import DeleteAccount from './Components/DeleteAccount';
-import AboutAbiri from './Components/AboutAbiri';
-import AboutTerms from './Components/AboutTerms';
+import "./index.css";
+import App from "./App";
+import Home from "./Components/Home";
+import PrivacyPolicyContent from "./Components/PrivacyPolicyComponent";
+import DeleteAccount from "./Components/DeleteAccount";
+import AboutAbiri from "./Components/AboutAbiri";
+import AboutTerms from "./Components/AboutTerms";
+import TaxiComponent from "./Components/TaxiComponent";
 
-const root = document.getElementById('root');
+import Login from "./Components/Login";
+import CreateUser from "./Components/CreateUser";
+import { loadUserFromStorage, userStore } from "./store/userStore";
+
+const root = document.getElementById("root");
 
 if (import.meta.env.DEV && !(root instanceof HTMLElement)) {
   throw new Error(
-    'Root element not found. Did you forget to add it to your index.html? Or maybe the id attribute got misspelled?',
+    "Root element not found. Did you forget to add it to your index.html? Or maybe the id attribute got misspelled?"
   );
 }
 
+// Load user from localStorage when the app starts
+loadUserFromStorage();
+
 render(() => (
-<Router >
+  <Router>
+    {/* Home route */}
+    <Route
+      path="/"
+      component={Home}
+    />
+
+
+    {/* Login and CreateUser routes */}
+    <Route path="/login" component={Login} />
+    <Route path="/create_user" component={CreateUser} />
+
+    {/* Other routes */}
+    <Route path="/taxi" component={TaxiComponent} />
     <Route path="/delete_user" component={DeleteAccount} />
-    <Route path="/about_abiri" component={AboutAbiri}/>
+    <Route path="/about_abiri" component={AboutAbiri} />
     <Route path="/privacy_policy" component={PrivacyPolicyContent} />
     <Route path="/terms" component={AboutTerms} />
-    <Route path="/" component={Home1} />
   </Router>
 ), root);
+
