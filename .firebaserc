@@ -1,6 +1,7 @@
 {
   "projects": {
-    "default": "abiri-web"
+    "default": "abiri-6ba83",
+    "abiri-web": "abiri-6ba83"
   },
   "targets": {},
   "etags": {}

@@ -2,12 +2,18 @@
 /* Default style for home container */
 .home {
   font-family: Arial, sans-serif;
-  padding: 20px;
+  padding: 2px;
   margin: auto;
   color: black;
 }
 
-
+@media (hover: none) and (pointer: coarse) {
+  .home {
+    margin: 0; /* Remove auto margin for mobile to avoid unnecessary spacing */
+    font-size: 14px; /* Adjust font size for smaller screens */
+    overflow-x: hidden;
+  }
+}
 
 .home_header {
   padding: 10px 0; /* Adjust padding if necessary */
@@ -23,10 +29,32 @@
   width: 100%;
   background-color: #FFFFFF;
 }
+.header-text {
+  flex: 0 0 auto;
+  text-align: center; /* Center align the header */
+}
 
-.containerhead h1 {
-  font-size: 1.5rem;
-  margin: 20px 0; /* Increased top and bottom margin */
+.header-text h1 {
+  font-size: 2.5rem; /* Larger font for emphasis */
+  margin: 20px 0; /* Maintain spacing */
+  font-family: "Poppins", sans-serif;
+  letter-spacing: 2px; /* Slight letter spacing for a modern feel */
+  font-weight: bold;
+  display: inline-block;
+  color: #1A3A26; /* Deep green */
+}
+
+.header-text .abiri {
+  color: #0A7DC1; /* Vibrant blue for Abiri */
+  font-weight: bold;
+  font-size: 3rem; /* Slightly larger than Africa */
+}
+
+.header-text .africa {
+  color: #0A7DC1;
+  opacity: 0.8; /* Subtle but noticeable */
+  font-size: 2.5rem; /* Matches h1 size */
+  font-weight: 400; /* Slightly lighter than Abiri */
 }
 
 .containerhead nav {
@@ -45,13 +73,42 @@
   text-decoration: underline;
 }
 
+.useful-links {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.useful-links p {
+  color: black;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.useful-links a {
+  color: black;
+  text-decoration: none;
+  margin: 5px 0;
+}
+.useful-links a:hover {
+  color: #0098d4;
+  transform: scale(1.1);
+}
+.menu-icon {
+  display: none;
+  cursor: pointer;
+}
+
 /* Media query for smaller screens */
 @media (max-width: 768px) {
   .containerhead {
-    flex-direction: column;
-    align-items: flex-start; /* Align items to the start (left) */
+    align-items: center; /* Align items to the start (left) */
+    padding: 0;
   }
-
+  .header-text{
+    margin-top: 0px;
+  }
   .containerhead h1 {
     text-align: center; /* Center align the title */
     width: 100%; /* Make the title span the full width */
@@ -65,66 +122,73 @@
   .containerhead nav a {
     margin: 0 10px; /* Adjust margin for smaller screens */
   }
+  .useful-links {
+    display: none;
+    width: 20%;
+  }
+  .menu-icon {
+    display: block;
+    font-size: 30px;
+    margin-right: 12px;
+  }
 }
 
-.user-view {
+.menu-overlay {
+  position: fixed;
+  margin-top: 10px; /* Starts below the header */
+  left: 0;
+  margin-right: 0;
+  margin-left: 60%;
+  background-color: #ffffff;
+  transform: translateY(-10%);
+  transition: transform 1.5s ease-in-out;
   display: flex;
-  align-items: center;
-  background-color: #EEEEEE;
-  border-radius: 25px; /* Rounded like a button */
-  padding: 10px;
-  margin: 10px;
-  cursor: pointer; /* Whole view is clickable */
-  position: relative; /* To position the dropdown */
-}
-
-.username {
-  flex: 1;
-  font-size: 16px;
-}
-
-.end-button {
-  background-color: transparent; /* Remove default background */
-  border: none;
-  width: 40px;
-  height: 40px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.dropdown-icon {
-  width: 20px;
-  height: 20px;
-}
-
-.dropdown-menu {
-  position: absolute;
-  top: 100%;
-  right: 0;
-  background-color: white;
+  padding: 40px;
   border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  padding: 10px;
-  z-index: 100;
-}
-
-.menu-item {
-  display: flex;
+  justify-content: center;
   align-items: center;
-  padding: 10px;
-  cursor: pointer;
+  z-index: 999;
 }
 
-.menu-item:hover {
-  background-color: #f5f5f5;
+.menu-overlay.open {
+  transform: translateY(0);
 }
 
-.menu-icon {
-  width: 20px;
-  height: 20px;
-  margin-right: 8px;
+/* Menu */
+.menu {
+  text-align: center;
+}
+
+.menu-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.menu-links li {
+  font-size: 1.5rem;
+}
+
+.menu-links a {
+  color: #0098d4;
+  text-transform: uppercase;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+.menu-links a:hover {
+  color: #000000;
+}
+
+@media (min-width: 768px) {
+.menu-overlay {
+  display: none; /* Hide nav links initially */
+  width: 100%;
+  text-align: center;
+}
 }
 
 /* Basic styling for the Request Taxi section */
@@ -236,7 +300,6 @@
   width: 100%;
   height: 100%;
   border-radius: 10px; /* Increased corner radius */
-
   background: url('/src/assets/nairobi-unsplash.jpg') no-repeat center center;
   background-size: cover;
   opacity: 0.7;
@@ -308,6 +371,9 @@
   background-color: black;
   color: white;
 }
+.about-tabs button:hover {
+  background-color: #898b8d;
+}
 
 .content-container {
   display: flex;
@@ -322,9 +388,10 @@
 
 .image-container img {
   width: 522px;
-  height: 250px;
+  height: auto; 
   border-radius: 8px;
   object-fit: cover;
+  flex-shrink: 0;
 }
 
 .tab-content {
@@ -356,6 +423,9 @@
   border: none;
   width: 133px;
   cursor: pointer;
+}
+.tab-content button:hover {
+  background-color: #898b8d;
 }
 
 /* Responsive Design */
@@ -438,7 +508,12 @@
     width: auto;
   }
 }
-
+@media (hover: none) and (pointer: coarse) {
+  .earn-money {
+    margin-left: 0px;
+    padding: 5px 2px;
+  }
+}
 
 .services {
   width: 100%;
@@ -564,6 +639,11 @@ h2 {
     flex: 1 1 calc(100% - 20px); /* One card per row on mobile */
   }
 }
+@media (hover: none) and (pointer: coarse) {
+  .services {
+    margin-left: 0px; /* Remove left margin on smaller screens */
+  }
+}
 
 /* Base styles (for larger screens) */
 .about {
@@ -585,11 +665,11 @@ h2 {
   align-items: start;
 }
 
-.image-container {
+.image-container1 {
   flex: 0 0 auto;
 }
 
-.image-container img {
+.image-container1 img {
   width: 522px;
   height: 250px;
   border-radius: 8px;
@@ -628,7 +708,7 @@ h2 {
     gap: 10px;
   }
 
-  .image-container img {
+  .image-container1 img {
     width: 100%; /* Make the image responsive */
     height: auto; /* Adjust height to maintain aspect ratio */
   }
@@ -659,6 +739,11 @@ h2 {
     font-size: 12px; /* Further adjust font size */
   }
 }
+@media (hover: none) and (pointer: coarse) {
+  .about {
+    margin-left: 0px; /* Remove left margin on smaller screens */
+  }
+}
 
 /* Container */
 /* General Styling */
@@ -684,11 +769,15 @@ h2 {
 .nav-tabs button {
   background-color: white; /* Default background color */
   color: black; /* Default text color */
-  border: 1px solid black; /* Border color */
+  border: 1px solid rgb(48, 47, 47); /* Border color */
   padding: 8px 16px; /* Reduced size */
   border-radius: 15px; /* Increased corner radius */
   cursor: pointer;
   font-size: 14px; /* Font size */
+}
+
+.nav-tabs button:hover {
+  background-color: #898b8d;
 }
 
 .nav-tabs button.active {
@@ -790,6 +879,11 @@ h2 {
     font-size: 14px; /* Adjust button font size */
   }
 }
+@media (hover: none) and (pointer: coarse) {
+  .download-apps {
+    margin-left: 0px; /* Remove left margin on smaller screens */
+  }
+}
 
 
 
@@ -803,6 +897,8 @@ footer {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
+  width: 100%;
   padding: 10px;
   margin: 0 auto;
 }
@@ -821,23 +917,6 @@ footer {
 .office-location {
   color: black;
   font-size: 14px;
-}
-
-.useful-links {
-  display: flex;
-  flex-direction: column;
-}
-
-.useful-links p {
-  color: black;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-
-.useful-links a {
-  color: black;
-  text-decoration: none;
-  margin: 5px 0;
 }
 
 .contact {

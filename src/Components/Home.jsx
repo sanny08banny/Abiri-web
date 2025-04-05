@@ -1,4 +1,4 @@
-import { createSignal , onMount } from "solid-js";
+import { createSignal, onMount } from "solid-js";
 import "../Css/Home.css"; // Ensure this CSS file styles your new layout
 import abiriRidesIcon from "../assets/local_taxi.png";
 import massageIcon from "../assets/Massage.png";
@@ -9,28 +9,40 @@ import logoutIcon from "../assets/logout_icon.png";
 import helpIcon from "../assets/help_icon.png";
 import getAppsImage from "../assets/get_app.jpg";
 import heroImage from "../assets/hero-image-root.jpg";
+import taxiEarnImage from "../assets/taxi_eg-unsplash.jpg"
+import rentalEarnImage from "../assets/car_rent_anim.jpg"
+import funEarnImage from "../assets/funspaces_1.png"
+import defaultEarnImage from "../assets/verified_drivers_1.png"
+import massageEarnImage from "../assets/massage_il.jpg"
 import { useNavigate } from "@solidjs/router";
-import { loadUserFromStorage, userStore} from "../store/userStore";
+import { loadUserFromStorage, userStore } from "../store/userStore";
+import RentalPreview from "../Rental/RentalPreview";
 function Home() {
   // State for active tab in the "Make Money" and "Download Apps" sections
   loadUserFromStorage
-  const [activeTab, setActiveTab] = createSignal("Abiri Rides");
+  const [activeTab, setActiveTab] = createSignal("Abiri Taxi");
   const [activeAppTab, setActiveAppTab] = createSignal("Rides");
   const image = heroImage;
   const getImageSrc = (tab) => {
     switch (tab) {
-      case "Abiri Rides":
-        return image;
+      case "Abiri Taxi":
+        return taxiEarnImage;
       case "Massage":
-        return "path/to/massage-image.jpg";
+        return massageEarnImage;
       case "Rentals":
-        return "path/to/rentals-image.jpg";
+        return rentalEarnImage;
       case "Funspaces":
-        return "path/to/funspaces-image.jpg";
+        return funEarnImage;
       default:
-        return "path/to/default-image.jpg";
+        return taxiEarnImage;
     }
   };
+
+  const [isMenuOpen, setMenuOpen] = createSignal(false);
+
+  // Toggle function for the menu
+  const toggleMenu = () => setMenuOpen(!isMenuOpen());
+
   const [pickup, setPickup] = createSignal("");
   const [destination, setDestination] = createSignal("");
   const navigate = useNavigate();
@@ -62,61 +74,38 @@ function Home() {
     navigate(`/taxi?pickup=${encodeURIComponent(pickup())}&destination=${encodeURIComponent(destination())}`);
   };
 
-const toggleMenu = () => {
-  setShowMenu(!showMenu());
-};
-
-const logout = () => {
-  // Logic for logging out the user
-};
-
-const openHelpOptions = () => {
-  // Provide options for the user to contact support via phone, WhatsApp, or email
-  const choice = prompt('Choose a help option: 1. Call, 2. WhatsApp, 3. Email');
-  switch (choice) {
-    case '1':
-      window.location.href = 'tel:+1234567890'; // Phone number for support
-      break;
-    case '2':
-      window.open('https://wa.me/1234567890', '_blank'); // WhatsApp message
-      break;
-    case '3':
-      window.location.href = 'mailto:support@example.com'; // Email link
-      break;
-    default:
-      alert('Invalid option');
-  }
-};
-
-
-
   return (
     <div class="home">
-       <header>
+      <header>
         <div class="containerhead">
-          <h1>Abiri Africa</h1>
-          <div class="user-view" onClick={toggleMenu}>
-  <span class="username">{userStore.user ? userStore.user.user_name : "Guest"}</span>
-  <button class="end-button">
-    <img src={dropdownIcon} alt="Dropdown Icon" class="dropdown-icon" />
-  </button>
-
-  {/* Dropdown menu */}
-  {showMenu() && (
-    <div class="dropdown-menu">
-      <div class="menu-item" onClick={logout}>
-        <img src="/assets/logout_icon.png" alt="Logout" class="menu-icon" /> Logout
-      </div>
-      <div class="menu-item" onClick={openHelpOptions}>
-        <img src={helpIcon} alt="Help" class="menu-icon" /> Help
-      </div>
-    </div>
-  )}
-</div>
-
-
+          <div class="header-text">
+            <h1><span class="abiri">Abiri</span> <span class="africa">Africa</span></h1>
+          </div>
+          <div class={`useful-links ${isMenuOpen() ? 'open' : ''}`}>
+            <a href="/">Home</a>
+            <a href="/about_abiri">About</a>
+            <a href="/privacy_policy">Privacy Policy</a>
+            <a href="/terms">Terms</a>
+          </div>
+          <div class="menu-icon" onClick={toggleMenu}>
+          <i class="fas fa-bars"></i> {/* Font Awesome hamburger icon */}
+        </div>
         </div>
       </header>
+
+      {isMenuOpen() && (
+        <div class="menu-overlay">
+          <nav class="menu">
+            <ul class="menu-links">
+            <a href="/">Home</a>
+            <a href="/about_abiri">About</a>
+            <a href="/privacy_policy">Privacy Policy</a>
+            <a href="/terms">Terms</a>
+            </ul>
+          </nav>
+        </div>
+      )}
+
       {/* Hero Section */}
       <section class="hero">
         <div class="hero-content">
@@ -131,39 +120,41 @@ const openHelpOptions = () => {
         </div>
       </section>
 
+      <RentalPreview />
+
       <section class="request-taxi">
-      <h2>Request a Taxi</h2>
-      <div class="input-group">
-        <label for="pickup">Pickup Location</label>
-        <input
-          id="pickup"
-          type="text"
-          ref={pickupInput}
-          value={pickup()}
-          onInput={(e) => setPickup(e.target.value)}
-          placeholder="Enter pickup location"
-        />
-      </div>
-      <div class="input-group">
-        <label for="destination">Destination</label>
-        <input
-          id="destination"
-          type="text"
-          ref={destinationInput}
-          value={destination()}
-          onInput={(e) => setDestination(e.target.value)}
-          placeholder="Enter destination"
-        />
-      </div>
-      <button onClick={handleRequestTaxi}>Request Taxi</button>
-    </section>
+        <h2>Request a Taxi</h2>
+        <div class="input-group">
+          <label for="pickup">Pickup Location</label>
+          <input
+            id="pickup"
+            type="text"
+            ref={pickupInput}
+            value={pickup()}
+            onInput={(e) => setPickup(e.target.value)}
+            placeholder="Enter pickup location"
+          />
+        </div>
+        <div class="input-group">
+          <label for="destination">Destination</label>
+          <input
+            id="destination"
+            type="text"
+            ref={destinationInput}
+            value={destination()}
+            onInput={(e) => setDestination(e.target.value)}
+            placeholder="Enter destination"
+          />
+        </div>
+        <button onClick={handleRequestTaxi}>Request Taxi</button>
+      </section>
 
       {/* Make Money Section */}
       <section class="earn-money">
         <div class="containerdefault">
           <h2>Make money with Abiri Africa</h2>
           <div class="about-tabs">
-            {["Abiri Rides", "Massage", "Rentals", "Funspaces"].map((tab) => (
+            {["Abiri Taxi", "Massage", "Rentals", "Funspaces"].map((tab) => (
               <button
                 class={activeTab() === tab ? "active" : ""}
                 onClick={() => setActiveTab(tab)}
@@ -182,7 +173,7 @@ const openHelpOptions = () => {
               />
             </div>
             <div class="tab-content">
-              {activeTab() === "Abiri Rides" && (
+              {activeTab() === "Abiri Taxi" && (
                 <>
                   <h3>Drive and earn money</h3>
                   <p class="title">Subscription and not commission</p>
@@ -200,8 +191,63 @@ const openHelpOptions = () => {
                   </button>
                 </>
               )}
-              {/* Add similar content for other tabs if needed */}
-            </div>
+              {activeTab() === "Massage" && (
+                <>
+                  <h3>Massage Services</h3>
+                  <p class="title">On-demand massage bookings</p>
+                  <p>
+                    Book a massage from our well-vetted and professional service providers. Our
+                    therapists are available for on-demand appointments, ensuring relaxation
+                    whenever you need it.
+                  </p>
+                  <p class="title">Tailored, professional care</p>
+                  <p>
+                    Choose from various massage types and enjoy personalized care at your
+                    preferred location—home, office, or hotel.
+                  </p>
+                  <button onclick="window.location.href='https://play.google.com/store/apps/details?id=com.sanny_tech.carapp';">
+                    Book a massage
+                  </button>
+                </>
+              )}
+
+              {activeTab() === "Rentals" && (
+                <>
+                  <h3>Earn with vehicle rentals</h3>
+                  <p class="title">Rent out any type of vehicle</p>
+                  <p>
+                    List your vehicle, whether it's a car, bike, or van, and earn income by renting
+                    it out to travelers and locals in need.
+                  </p>
+                  <p class="title">Insurance coverage included</p>
+                  <p>
+                    We provide rental insurance coverage to ensure both you and your renters are
+                    protected.
+                  </p>
+                  <button onclick="window.location.href='https://play.google.com/store/apps/details?id=com.sanny_tech.carapp';">
+                    Get the app
+                  </button>
+                </>
+              )}
+
+              {activeTab() === "Funspaces" && (
+                <>
+                  <h3>Find Recreational Fun Spaces</h3>
+                  <p class="title">Spaces for families and adults</p>
+                  <p>
+                    Discover a variety of recreational options for families and adults, including
+                    parks, amusement centers, and relaxation spaces.
+                  </p>
+                  <p class="title">Plan your visit with ease</p>
+                  <p>
+                    Access information on pricing, photos, and Abiri taxi estimates to and from
+                    the fun space of your choice, making it easier than ever to plan your day out.
+                  </p>
+                  <button onclick="window.location.href='https://play.google.com/store/apps/details?id=com.sanny_tech.carapp';">
+                    Explore Fun Spaces
+                  </button>
+                </>
+              )}            </div>
           </div>
         </div>
       </section>
@@ -213,7 +259,7 @@ const openHelpOptions = () => {
           <div class="service-cards">
             <div class="card">
               <h3>
-                Abiri Rides
+                Abiri Taxi
                 <img
                   src={abiriRidesIcon}
                   alt="Abiri Rides Icon"
@@ -259,7 +305,7 @@ const openHelpOptions = () => {
         <div className="about_container">
           <h2>About us</h2>
           <div className="aboutcontent">
-            <div className="image-container">
+            <div className="image-container1">
               <img src={image} alt="About Us Image" />
             </div>
             <div className="text">
@@ -290,7 +336,7 @@ const openHelpOptions = () => {
       <section class="download-apps">
         <div class="download-apps-container">
           <h2>Download our Apps</h2>
-          <div class="nav-tabs">
+          {/* <div class="nav-tabs">
             {["Rides", "Service Provider"].map((tab) => (
               <button
                 class={activeAppTab() === tab ? "active" : ""}
@@ -299,7 +345,7 @@ const openHelpOptions = () => {
                 {tab}
               </button>
             ))}
-          </div>
+          </div> */}
           <div class="tab-content1">
             {activeAppTab() === "Rides" && (
               <div class="content-card">
@@ -327,13 +373,6 @@ const openHelpOptions = () => {
           <div class="office-info">
             <p>Office location</p>
             <p class="office-location">Mirage Towers, Westlands</p>
-          </div>
-          <div class="useful-links">
-            <p>Useful Links</p>
-            <a href="/">Home</a>
-            <a href="/about_abiri">About</a>
-            <a href="/privacy_policy">Privacy Policy</a>
-            <a href="/terms">Terms</a>
           </div>
           <div class="contact">
             <p>Contact us</p>
@@ -363,6 +402,7 @@ const openHelpOptions = () => {
                 <i class="fa-brands fa-linkedin"></i>
               </a>
               {/* https://www.tiktok.com/@abiriafrica?_t=8oj0kiDnKh4&_r=1 */}
+              <a href="/car_upload">Admin</a>
             </div>
 
             <div class="contact-numbers">

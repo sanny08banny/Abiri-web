@@ -1,0 +1,86 @@
+.preview-container {
+    position: relative;
+    padding: 20px;
+    overflow: hidden;
+    text-align: center;
+  }
+  
+  .preview-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .scroll-container {
+    display: flex;
+    gap: 15px;
+    overflow-x: auto;
+    margin-left: 40px;
+    margin-right: 40px;
+    scroll-behavior: smooth;
+    scrollbar-width: none; /* Hide scrollbar for Firefox */
+    -ms-overflow-style: none; /* Hide scrollbar for IE/Edge */
+    padding-bottom: 10px;
+    scroll-snap-type: x mandatory;
+  }
+  
+  .scroll-container::-webkit-scrollbar {
+    display: none; /* Hide scrollbar for Chrome, Safari */
+  }
+  
+  .rental-card {
+    min-width: 250px;
+    max-width: 250px;
+    background: white;
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    scroll-snap-align: start;
+  }
+  
+  .rental-image {
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+  
+  .rental-name {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 8px;
+  }
+  
+  .rental-price {
+    color: #666;
+    font-size: 14px;
+  }
+  
+  /* Scroll Buttons */
+  .scroll-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 20px;
+    border-radius: 50%;
+    transition: background 0.3s;
+  }
+  
+  .scroll-btn:hover {
+    background: rgba(0, 0, 0, 0.8);
+  }
+  
+  .scroll-btn.left {
+    left: 10px;
+  }
+  
+  .scroll-btn.right {
+    right: 10px;
+  }
+  

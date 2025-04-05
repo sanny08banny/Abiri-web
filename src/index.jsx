@@ -13,6 +13,7 @@ import TaxiComponent from "./Components/TaxiComponent";
 import Login from "./Components/Login";
 import CreateUser from "./Components/CreateUser";
 import { loadUserFromStorage, userStore } from "./store/userStore";
+import CarRentalForm from "./Rental/CarRentalForm";
 
 const root = document.getElementById("root");
 
@@ -44,6 +45,7 @@ render(() => (
     <Route path="/about_abiri" component={AboutAbiri} />
     <Route path="/privacy_policy" component={PrivacyPolicyContent} />
     <Route path="/terms" component={AboutTerms} />
+    <Route path="/car_upload" component={CarRentalForm} />
   </Router>
 ), root);
 
